@@ -1,0 +1,51 @@
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    restart: unless-stopped
+
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD:?}
+      WORDPRESS_TABLE_PREFIX: wp_
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    volumes:
+      - wordpress_uploads:/var/www/html/wp-content/uploads
+
+    expose:
+      - "80"
+
+  db:
+    image: mysql:8.0
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD:?}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?}
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - mysqladmin ping -h localhost -u root -p$${MYSQL_ROOT_PASSWORD}
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+volumes:
+  wordpress_uploads:
+  mysql_data:
