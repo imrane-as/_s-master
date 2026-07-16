@@ -1,5 +1,7 @@
 .git
 .github
-README.md
 node_modules
 vendor
+README.md
+docker-compose.yml
+Dockerfile
