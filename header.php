@@ -24,7 +24,7 @@
 
 <?php wp_body_open(); ?>
 <div class="demo-banner">
-    🚀 CentUn Studios - WordPress Demo | GitHub → Git Pull → Cache Refresh
+    🚀 CentUn - WordPress Demo | GitHub → Git Pull → Cache Refresh
 </div>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
