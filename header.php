@@ -1,63 +1,72 @@
 <?php
 /**
- * The header for our theme
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ * The header for our theme.
  *
  * @package _s
  */
-
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#07111f">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-
 <?php wp_body_open(); ?>
+
 <div class="demo-banner">
-    🚀 CentUn - WordPress Demo | GitHub → Git Pull → Cache Refresh
+	<div class="demo-banner-inner">
+		<span class="demo-status"></span>
+		<strong>Démonstration DevOps</strong>
+		<span>GitHub → Docker → Coolify → WordPress</span>
+	</div>
 </div>
+
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#primary">
+		<?php esc_html_e( 'Skip to content', '_s' ); ?>
+	</a>
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$_s_description = get_bloginfo( 'description', 'display' );
-			if ( $_s_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $_s_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+			<a class="brand-mark" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<span>C</span>
+			</a>
+
+			<div>
+				<p class="site-title">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						CentUn Studios
+					</a>
+				</p>
+
+				<p class="site-description">
+					WordPress Automation Lab
+				</p>
+			</div>
+		</div>
 
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', '_s' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+			<button
+				class="menu-toggle"
+				aria-controls="primary-menu"
+				aria-expanded="false"
+			>
+				Menu
+			</button>
+
+			<ul id="primary-menu" class="menu">
+				<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Accueil</a></li>
+				<li><a href="#pipeline">Pipeline</a></li>
+				<li><a href="#services">Projet</a></li>
+			</ul>
+		</nav>
+
+		<a class="header-cta" href="#pipeline">
+			Voir la démo
+		</a>
+	</header>
