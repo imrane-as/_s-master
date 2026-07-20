@@ -18,7 +18,7 @@ get_header();
 
 			<h1>
 				Une expérience web
-				<span>déployée automatiquement.</span>
+				<span>déployée automatiquement avec Imrane le goat.</span>
 			</h1>
 
 			<p class="hero-lead">
